@@ -1,12 +1,18 @@
 import { Container, Text, VStack, Box, Heading, Button, Flex, IconButton } from "@chakra-ui/react";
 import { useState } from "react";
 import { FaCode, FaLaptopCode, FaChalkboardTeacher } from "react-icons/fa";
+import CodeEditor from '../components/CodeEditor';
 
 const Index = () => {
   const [enrolledCourses, setEnrolledCourses] = useState([]);
+  const [code, setCode] = useState('// Write your code here');
 
   const handleEnroll = (course) => {
     setEnrolledCourses([...enrolledCourses, course]);
+  };
+
+  const handleCodeChange = (newValue) => {
+    setCode(newValue);
   };
 
   return (
@@ -37,13 +43,19 @@ const Index = () => {
             <Button mt={4} colorScheme="teal" onClick={() => handleEnroll('JavaScript')}>Start Learning</Button>
           </Box>
         </Flex>
-      <Box mt={8}>
+        
+        <Box mt={8}>
           <Heading as="h2" size="lg">Enrolled Courses</Heading>
           <VStack spacing={2} mt={4}>
             {enrolledCourses.map((course, index) => (
               <Text key={index}>{course}</Text>
             ))}
           </VStack>
+        </Box>
+
+        <Box mt={8} width="100%">
+          <Heading as="h2" size="lg" mb={4}>Code Editor</Heading>
+          <CodeEditor language="javascript" value={code} onChange={handleCodeChange} />
         </Box>
       </VStack>
     </Container>
