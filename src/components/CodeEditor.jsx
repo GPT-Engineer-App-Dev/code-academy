@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from '@chakra-ui/react';
-import { MonacoEditor } from '@monaco-editor/react';
+import MonacoEditor from '@monaco-editor/react';
 
 const CodeEditor = ({ language, value, onChange }) => {
   return (
